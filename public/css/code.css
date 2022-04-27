@@ -1,0 +1,52 @@
+.code {
+  /*position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;*/
+  background-color: #222;
+  color: #fff;
+  font-size: 1.2em;
+  display: none;
+  box-shadow: 0 0 1em #000;
+  overflow: auto;
+}
+
+.code.active {
+  display: block;
+}
+
+.code span.yellow {
+  color: yellow;
+}
+
+.code span.blue {
+  color: #7396FF;
+}
+
+.code span.green {
+  color: lightgreen;
+}
+
+.code span.red {
+  color: fuchsia
+}
+
+.div-close {
+  display: flex;
+  flex-direction: row-reverse;
+}
+
+.div-close > span {
+  padding: 0;
+  width: 1em;
+  height: 1em;
+  overflow: hidden;
+  background-color: transparent;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 128 128' version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' xml:space='preserve' x='0' y='0' width='128' height='128'%3E%3Cpath d='M 105.0122 15.9167 L 64 56.9289 L 22.9878 15.9167 L 15.9167 22.9878 L 56.9289 64 L 15.9167 105.0122 L 22.9878 112.0833 L 64 71.0711 L 105.0122 112.0833 L 112.0833 105.0122 L 71.0711 64 L 112.0833 22.9878 L 105.0122 15.9167 Z' fill='%23EE759C'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: 0 0;
+  background-size: 1em 1em;
+  border: solid 0.3em #222;
+  margin: 0.5em 0.5em;
+  cursor: pointer;
+}

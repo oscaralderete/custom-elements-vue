@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" href="/favicon.ico" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Vite App</title>
+    <link rel="stylesheet" href="/css/OALoader.1.0.0.css" />
+    <link rel="stylesheet" href="/css/OAToast.1.0.0.css" />
+    <link rel="stylesheet" href="/css/OADialogs.1.0.0.css" />
+    <link rel="stylesheet" href="/css/code.css" />
+    <style>
+      html {
+        scroll-behavior: smooth;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="app"></div>
+
+    <div id="code-component" class="code">
+      <div class="div-close">
+        <span onclick="window.app.closeAllCodes()"></span>
+      </div>
+      <pre>
+        export default {
+          <span class="green">props</span>: ["msg"],
+          <span class="green">data()</span> {
+            return {
+              <span class="blue">count</span>: 0,
+            };
+          },
+          <span class="green">methods</span>: {
+            <span class="blue">showLoader()</span> {
+              <span class="comment">/* here the custom web element is selected right from the document interface */</span>
+              const loader = document.querySelector("oa-loader");
+              loader.show();
+              this.count++;
+              setTimeout(() => {
+                loader.hide();
+              }, 2000);
+            },
+        
+            <span class="blue">showGlobalLoader()</span> {
+              <span class="comment">/* and here the loader is invoked through the global declaration window.app = {...} */</span>
+              window.app.loader.show();
+              this.count++;
+              setTimeout(() => {
+                window.app.loader.hide();
+              }, 2000);
+            },
+          },
+        };
+      </pre>
+    </div>
+
+    <div id="code-app" class="code">
+      <div class="div-close">
+        <span onclick="window.app.closeAllCodes()"></span>
+      </div>
+      <pre>
+        &lt;template&gt;
+          ...
+          &lt;HelloWorld ref="hello" msg="Custom Web Elements: &lt;oa-loader /&gt;" /&gt;
+          ...
+        &lt;/template&gt;
+
+        &lt;script&gt;
+        import HelloWorld from "./components/HelloWorld.vue";
+
+        export default {
+          <span class="green">components</span>: { <span class="blue">HelloWorld</span> },
+          <span class="green">methods</span>: {
+            <span class="blue">showLoader()</span> {
+              <span class="yellow">/* here the loader is invoked through the global declaration window.app = {...} */</span>
+              window.app.loader.show();
+              <span class="yellow">/* we can access to the child component data property: count, via this.$refs */</span>
+              this.$refs.hello.count++;
+              setTimeout(() => {
+                window.app.loader.hide();
+              }, 1000);
+            },
+            <span class="blue">callLoaderFromComponent()</span> {
+              <span class="yellow">/* here the loader is invoked through the same component HelloWorld inner method and data property */</span>
+              this.$refs.hello.count++;
+              this.$refs.hello.showLoader();
+            },
+          },
+        };
+        &lt;/script&gt;
+      </pre>
+    </div>
+
+    <oa-loader>
+      <h1>
+        You can put a SVG element here, this custom web element will remove
+        every other tag.
+      </h1>
+      <h2>
+        If you place a SVG here, this custom tag will rotate your SVG. This
+        custom tag let you config some properties using :root definitions.
+        Please, check the CSS inspector on your browser to get the full list of
+        configurable properties.
+      </h2>
+      <h3>
+        If your SVG is already animated using the SVG's element 'animate' the
+        best option is to use the CSS :root property: --oa-loader-spinner.
+      </h3>
+    </oa-loader>
+    <oa-toast></oa-toast>
+    <oa-dialogs></oa-dialogs>
+
+    <script src="/js/OALoader.1.0.0.js"></script>
+    <script src="/js/OAToast.1.0.0.js"></script>
+    <script src="/js/OADialogs.1.0.0.js"></script>
+    <script src="/js/scripts.js"></script>
+    <script type="module" src="/src/main.js"></script>
+  </body>
+</html>
